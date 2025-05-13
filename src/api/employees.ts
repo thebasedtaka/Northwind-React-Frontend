@@ -1,4 +1,4 @@
-import { employeeSchema } from "@/models/employe.model";
+import { employeeSchema } from "@/models/employee.model";
 import { z } from "zod";
 import client from "./client";
 
