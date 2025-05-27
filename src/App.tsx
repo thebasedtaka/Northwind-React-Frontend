@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import { getCategories } from "./api/categories";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Page from "./components/Page";
+import Page from "./pages/Page";
 
 function App() {
   return (

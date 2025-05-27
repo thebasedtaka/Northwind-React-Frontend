@@ -14,11 +14,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { useLocation } from "react-router-dom";
-import { SearchHeader } from "./search-header";
+import { SearchHeader } from "../components/search-header";
+import { Dashboard } from "@/routes/dashboard";
 
 export default function Page({ children }: { children?: React.ReactNode }) {
   const location = useLocation();
   const pathSegments = location.pathname.split("/").filter(Boolean);
+  const isDashboard = pathSegments.length === 0;
 
   return (
     <SidebarProvider>
@@ -60,12 +62,15 @@ export default function Page({ children }: { children?: React.ReactNode }) {
 
         {/* Main Content Area */}
         <main className="flex-1 overflow-auto p-6">
-          {children || (
-            <div className="flex flex-col gap-4">
-              <div className="mx-auto h-24 w-full max-w-3xl rounded-xl bg-muted/50" />
-              <div className="mx-auto h-full w-full max-w-3xl rounded-xl bg-muted/50" />
-            </div>
-          )}
+          {children ||
+            (isDashboard ? (
+              <Dashboard />
+            ) : (
+              <div className="flex flex-col gap-4">
+                <div className="mx-auto h-24 w-full max-w-3xl rounded-xl bg-muted/50" />
+                <div className="mx-auto h-full w-full max-w-3xl rounded-xl bg-muted/50" />
+              </div>
+            ))}
         </main>
       </SidebarInset>
     </SidebarProvider>
