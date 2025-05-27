@@ -2,14 +2,12 @@ import React from "react";
 
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-import { NWBlue, NWWhite } from "@/assets";
+import { NWBlue } from "@/assets";
 
 export function Navbar() {
   return (
