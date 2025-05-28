@@ -5,8 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  // Ensure 'mode' is in the parameter list
-  // --- ADD THIS LOGGING LINE FOR DEBUGGING ---
   console.log(
     "VITE_API_BASE_URL in vite.config.ts:",
     process.env.VITE_API_BASE_URL
