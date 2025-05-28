@@ -52,7 +52,7 @@
     "vite": "^6.3.5"
   },
     "engines": {
-    "node": ">=20.0.0 <23.0.0", // This is the key. Make sure it's correct.
+    "node": ">=20.0.0 <23.0.0",
     "npm": ">=9.0.0"
   }
 }
