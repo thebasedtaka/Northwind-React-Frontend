@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
     "VITE_API_BASE_URL in vite.config.ts:",
     process.env.VITE_API_BASE_URL
   );
-  console.log("Vite build mode:", mode);
+  console.log("Vite build mode: ", mode);
   // -------------------------------------------
 
   return {
