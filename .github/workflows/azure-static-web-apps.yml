@@ -21,18 +21,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Debug Environment Variable
+      - name: Debug Environment Variable (keep this for now, it's good confirmation)
         run: |
           echo "Value of VITE_API_BASE_URL_PROD from secrets: ${{ secrets.VITE_API_BASE_URL_PROD }}"
-          # Also check if it's available as VITE_API_BASE_URL for the build step
           echo "Value of VITE_API_BASE_URL in this context: $VITE_API_BASE_URL"
         env:
           VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL_PROD }}
 
+      - name: Clean build artifacts and cache
+        run: |
+          rm -rf dist
+          rm -rf node_modules/.vite # This specifically targets Vite's cache
+          npm cache clean --force # npm's cache
+
       - name: Build Vite app
         run: npm run build
         env:
-          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL_PROD }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL_PROD }} # Ensure it's still here!
 
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
