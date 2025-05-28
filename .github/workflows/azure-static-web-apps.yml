@@ -57,5 +57,3 @@ jobs:
           app_location: "/"
           api_location: ""
           output_location: "dist"
-          build_properties: |
-            NODE_VERSION=20.x
