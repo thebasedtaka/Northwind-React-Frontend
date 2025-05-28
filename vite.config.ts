@@ -3,15 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
-// https://vite.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   console.log(
-    "VITE_API_BASE_URL in vite.config.ts:",
+    "VITE_API_BASE_URL in vite.config.ts (for define):",
     process.env.VITE_API_BASE_URL
   );
-  console.log("Vite build mode: ", mode);
-  // -------------------------------------------
-
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -20,8 +16,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
+      // TEMPORARY: HARDCODE A TEST URL TO SEE IF 'define' WORKS AT ALL
       "import.meta.env.VITE_API_BASE_URL": JSON.stringify(
-        process.env.VITE_API_BASE_URL
+        "https://TEST-URL-DEFINED-SUCCESSFULLY.com"
       ),
     },
   };
