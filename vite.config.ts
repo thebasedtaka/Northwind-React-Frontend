@@ -4,10 +4,31 @@ import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig(() => {
+  const apiBaseUrlFromEnv = process.env.VITE_API_BASE_URL;
+
+  // --- ADD THESE NEW DEBUG LOGS ---
   console.log(
-    "VITE_API_BASE_URL in vite.config.ts (for define):",
-    process.env.VITE_API_BASE_URL
+    "DEBUG_VITE: VITE_API_BASE_URL from process.env:",
+    apiBaseUrlFromEnv
   );
+  console.log(
+    "DEBUG_VITE: typeof apiBaseUrlFromEnv:",
+    typeof apiBaseUrlFromEnv
+  );
+  console.log(
+    "DEBUG_VITE: JSON.stringify(apiBaseUrlFromEnv):",
+    JSON.stringify(apiBaseUrlFromEnv)
+  );
+  // ---------------------------------
+
+  // Use a fallback just to be absolutely sure something gets defined if it's undefined
+  const definedApiBaseUrl =
+    typeof apiBaseUrlFromEnv === "string" && apiBaseUrlFromEnv !== ""
+      ? apiBaseUrlFromEnv
+      : "https://FALLBACK_URL_SHOULD_NOT_BE_USED.com"; // This should ONLY appear if your secret is truly bad
+
+  console.log("DEBUG_VITE: Using for define:", definedApiBaseUrl); // What's actually passed to define
+
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -16,10 +37,7 @@ export default defineConfig(() => {
       },
     },
     define: {
-      // TEMPORARY: HARDCODE A TEST URL TO SEE IF 'define' WORKS AT ALL
-      "import.meta.env.VITE_API_BASE_URL": JSON.stringify(
-        process.env.VITE_API_BASE_URL
-      ),
+      "import.meta.env.VITE_API_BASE_URL": JSON.stringify(definedApiBaseUrl),
     },
   };
 });
