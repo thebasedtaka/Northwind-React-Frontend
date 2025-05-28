@@ -18,7 +18,7 @@ export default defineConfig(() => {
     define: {
       // TEMPORARY: HARDCODE A TEST URL TO SEE IF 'define' WORKS AT ALL
       "import.meta.env.VITE_API_BASE_URL": JSON.stringify(
-        "https://TEST-URL-DEFINED-SUCCESSFULLY.com"
+        process.env.VITE_API_BASE_URL
       ),
     },
   };
