@@ -4,11 +4,22 @@ import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(({ mode }) => {
+  // Ensure 'mode' is in the parameter list
+  // --- ADD THIS LOGGING LINE FOR DEBUGGING ---
+  console.log(
+    "VITE_API_BASE_URL in vite.config.ts:",
+    process.env.VITE_API_BASE_URL
+  );
+  console.log("Vite build mode:", mode);
+  // -------------------------------------------
+
+  return {
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
-  },
+  };
 });
