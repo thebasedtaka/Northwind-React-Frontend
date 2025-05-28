@@ -18,6 +18,15 @@ jobs:
         with:
           node-version: "22.15.0"
 
+      - name: Verify Node.js Version
+        run: |
+          echo "Node.js version during build:"
+          node -v
+          echo "npm version during build:"
+          npm -v
+          echo "PATH environment variable:"
+          echo $PATH # Check if node's path is correctly set
+
       - name: Install dependencies
         run: npm ci
 
