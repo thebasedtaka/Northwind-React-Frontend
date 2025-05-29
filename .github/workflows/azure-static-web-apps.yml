@@ -46,7 +46,7 @@ jobs:
       - name: Build Vite app
         run: npm run build
         env:
-          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL_PROD }} # Ensure it's still here!
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL_PROD }}
 
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
@@ -58,3 +58,5 @@ jobs:
           api_location: ""
           output_location: "dist"
           app_build_command: "npm run build"
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL_PROD }}
